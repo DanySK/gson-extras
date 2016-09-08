@@ -1,14 +1,22 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 
 repositories { mavenCentral() }
 
+configurations {
+    doc { transitive false }
+    doclet
+}
+
 dependencies {
-	compile "com.google.code.gson:gson:$gsonVersion"
-	testCompile "junit:junit:$junitVersion"
+   compile "com.google.code.gson:gson:$gsonVersion"
+   testCompile "junit:junit:$junitVersion"
+   doclet "org.jboss.apiviz:apiviz:$apivizVersion"
 }
 
 eclipse {
@@ -17,3 +25,95 @@ eclipse {
         downloadJavadoc = true
     }
 }
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': artifactId, 'Implementation-Version': version
+    }
+    manifest.attributes provider: 'Alma Mater Studiorum Università di Bologna'
+}
+
+task javadoc(type: Javadoc, overwrite: true) {
+    source configurations.doc.collect { zipTree(it) }
+    source sourceSets.main.allJava
+    classpath = sourceSets.main.output + sourceSets.main.compileClasspath
+    include '**/*.java'
+    destinationDir file("$project.buildDir/docs/javadoc/")
+    failOnError = false
+    options.showAll()
+    options.addBooleanOption('nopackagediagram', true)
+    options.addStringOption('Xdoclint:none', '-quiet')
+    configure(options) {
+        windowTitle "$projectLongName version $project.version Javadoc API"
+        docTitle "$projectLongName $project.version reference API"
+        links 'http://docs.oracle.com/javase/8/docs/api/'
+        links 'https://static.javadoc.io/com.google.code.gson/gson/2.3.1/'
+        doclet 'org.jboss.apiviz.APIviz'
+        docletpath file(configurations.doclet.asPath)
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing { sign configurations.archives }
+signArchives.onlyIf { Boolean.parseBoolean(signArchivesIsEnabled) }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            pom.project {
+                name artifactId
+                description projectDescription
+                packaging 'jar'
+                url "$scmRootUrl/$artifactId"
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        name 'Danilo Pianini'
+                        email 'danilo.pianini@unibo.it'
+                        url 'http://www.danilopianini.org'
+                    }
+                    developer {
+                        name 'Matteo Francia'
+                        email 'matteo.francia2@studio.unibo.it'
+                    }
+                }
+                scm {
+                    url "$scmRootUrl/$artifactId"
+                    connection "%scmType:$scmLogin/$scmRepoName"
+                    developerConnection "%scmType:$scmLogin/$scmRepoName"
+                }
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) { gradleVersion = gradleVersion }
+
+defaultTasks 'wrapper', 'clean', 'build', 'check', 'javadoc', 'assemble', 'install'
+
