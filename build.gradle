@@ -42,7 +42,9 @@ task javadoc(type: Javadoc, overwrite: true) {
     failOnError = false
     options.showAll()
     options.addBooleanOption('nopackagediagram', true)
-    options.addStringOption('Xdoclint:none', '-quiet')
+    if(JavaVersion.current() == JavaVersion.VERSION_1_8){
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
     configure(options) {
         windowTitle "$projectLongName version $project.version Javadoc API"
         docTitle "$projectLongName $project.version reference API"
