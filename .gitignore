@@ -1,4 +1,6 @@
+bin/
 build/
+.settings/
 .project
 .directory
 .gradle
