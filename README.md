@@ -2,7 +2,7 @@
 
 This repository is a copy of gson-extras with the sole purpose of being shipped to Maven Central.
 
-*Note*: although the build produces Java 6 compatible class files, Java 7 in order to build, in order to perform all the tests.
+*Note*: although the build produces Java 6 compatible class files, Java 7 is required in order to build, in order to perform all the tests.
 
 
 ### *License*
