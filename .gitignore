@@ -5,3 +5,5 @@ build/
 .directory
 .gradle
 gradle.prefs
+version.info
+version.info
