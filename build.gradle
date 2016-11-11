@@ -2,12 +2,13 @@ buildscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
     }
-    dependencies { classpath "gradle.plugin.org.danilopianini:javadoc.io-linker:${javadocIOVersion}" }
+    dependencies {
+        classpath "gradle.plugin.org.danilopianini:javadoc.io-linker:${javadocIOVersion}"
+        classpath "gradle.plugin.org.danilopianini:build-commons:${buildCommonsVersion}"
+    }
 }
 
-plugins {
-    id "org.danilopianini.build-commons" version "${buildCommonsVersion}"
-}
+apply plugin: 'org.danilopianini.build-commons'
 
 configurations {
     doc { transitive false }
