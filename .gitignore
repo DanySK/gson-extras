@@ -7,3 +7,4 @@ build/
 gradle.prefs
 version.info
 version.info
+prepare_environment.sh
