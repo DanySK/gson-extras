@@ -8,3 +8,10 @@ gradle.prefs
 version.info
 version.info
 prepare_environment.sh
+eclipsebin
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+.DS_Store
