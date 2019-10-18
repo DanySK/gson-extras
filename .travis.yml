@@ -64,9 +64,10 @@ before_install:
   - source .disable-windows-defender.sh
   - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
   - source .install-jdk-travis.sh
-#  - LATEST_JDK6="$(echo $($jabba ls-remote | grep -m1 zulu@1.6))"
   - $jabba install zulu@1.6
+  - echo $JAVA_HOME
   - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/zulu@1.6
+  - $jabba use $ACTUAL_JDK
 script:
   - ./gradlew test
 before_cache:
