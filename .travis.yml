@@ -71,8 +71,8 @@ before_install:
   - source .install-jdk-travis.sh
   - export JAVA6_JDK=$($jabba ls-remote | grep -m1 1.6)
   - 'echo Selected JDK6: $JAVA6_JDK'
-  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && $jabba ls-remote && exit 1')
-  - $jabba install $JAVA6_JDK
+  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && $jabba ls-remote && exit 1)'
+  - $jabba install $JAVA6_JDKeeeee
   - $jabba use $JAVA6_JDK
   - echo setting ORG_GRADLE_PROJECT_java6Home to $JAVA_HOME
   - export ORG_GRADLE_PROJECT_java6Home=$JAVA_HOME
