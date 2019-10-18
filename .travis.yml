@@ -71,9 +71,8 @@ before_install:
   - 'echo Selected JDK6: $JAVA6_JDK'
   - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && $jabba ls-remote && exit 1)'
   - $jabba install $JAVA6_JDK
-  - $jabba use $JAVA6_JDK
-  - echo setting ORG_GRADLE_PROJECT_java6Home to $JAVA_HOME
-  - export ORG_GRADLE_PROJECT_java6Home=$JAVA_HOME
+  - echo setting ORG_GRADLE_PROJECT_java6Home to $HOME/.jabba/jdk/$JAVA6_JDK
+  - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/$JAVA6_JDK
   - $jabba use $ACTUAL_JDK
 script:
   - ./gradlew test
