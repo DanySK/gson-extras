@@ -1,12 +1,17 @@
 reference-jdk: &reference-jdk
   'JDK="adopt@1.8"'
+reference-os: &reference-os
+  'linux'
 language: bash
 git:
   depth: false
+arch:
+  - amd64
+  - arm64
 os:
   - osx
   - windows
-  - linux
+  - *reference-os
 dist: bionic
 stages:
   - check
@@ -29,20 +34,20 @@ env:
     - JDK="adopt-openj9@1.12"
 matrix:
   exclude:
-    - os: linux
+    - os: *reference-os
       env: *reference-jdk
 jobs:
   include:
     - stage: check
       name: "Compile, check, test on reference JDK"
-      os: linux
+      os: *reference-os
       env:
         - *reference-jdk
       script:
         - ./gradlew clean check
     - stage: deploy
       name: "Preparation of reports and deployment"
-      os: linux
+      os: *reference-os
       env:
         - PUBLISH="true"
         - *reference-jdk
