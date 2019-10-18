@@ -65,8 +65,6 @@ jobs:
       after_success:
         - travis_wait 40 ./gradlew publishAll -x test
 before_install:
-  - curl "${GRAVIS}.disable-windows-defender.sh" --output .disable-windows-defender.sh
-  - source .disable-windows-defender.sh
   - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
   - source .install-jdk-travis.sh
   - export JAVA6_JDK=$($jabba ls-remote | grep -m1 1.6)
