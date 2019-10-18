@@ -8,7 +8,8 @@ git:
 arch:
   - amd64
 os:
-  - osx
+# OSX dropped due to jabba not installing JDK6 correctly
+#  - osx
   - windows
   - *reference-os
 dist: bionic
