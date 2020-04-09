@@ -44,8 +44,6 @@ jobs:
       os: *reference-os
       env:
         - *reference-jdk
-      script:
-        - ./gradlew clean check
     - stage: deploy
       name: "Preparation of reports and deployment"
       os: *reference-os
@@ -61,9 +59,7 @@ jobs:
         - export ORG_GRADLE_PROJECT_signingKey=$(cat secrets.asc)
         - rm secrets.asc
       script:
-        - ./gradlew sign
-      after_success:
-        - travis_wait 40 ./gradlew publishAll -x test
+        - travis_retry ./gradlew publishAll -x test
 
 before_install:
   - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
@@ -77,7 +73,7 @@ before_install:
   - $jabba use $ACTUAL_JDK
 
 script:
-  - ./gradlew test
+  - travis_retry ./gradlew check
 
 before_cache:
   - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
