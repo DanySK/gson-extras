@@ -24,7 +24,8 @@ stages:
 env:
   global:
     - TERM=dumb
-    - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
+    - GRAVIS_REPO="https://github.com/DanySK/Gravis-CI.git"
+    - GRAVIS="$HOME/gravis"
   matrix:
     - *reference-jdk
     - JDK="adopt-openj9@1.8"
@@ -62,12 +63,13 @@ jobs:
         - travis_retry ./gradlew publishAll -x test
 
 before_install:
-  - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
-  - source .install-jdk-travis.sh
-  - export JAVA6_JDK=$($jabba ls-remote | grep -m1 @1.6)
+  - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
+  - source $GRAVIS/install-jdk
+  - export ACTUAL_JDK=$(jabba current)
+  - export JAVA6_JDK=$(jabba ls-remote | grep -m1 @1.6)
   - 'echo Selected JDK6: $JAVA6_JDK'
-  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && $jabba ls-remote && exit 1)'
-  - $jabba install $JAVA6_JDK
+  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && jabba ls-remote && exit 1)'
+  - jabba install $JAVA6_JDK
   - echo setting ORG_GRADLE_PROJECT_java6Home to $HOME/.jabba/jdk/$JAVA6_JDK
   - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/$JAVA6_JDK
   - $jabba use $ACTUAL_JDK
@@ -76,8 +78,7 @@ script:
   - travis_retry ./gradlew check
 
 before_cache:
-  - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
-  - bash .clean_gradle_cache.sh
+  - $GRAVIS/clean-gradle-cache
 
 cache:
   directories:
