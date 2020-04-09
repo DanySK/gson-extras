@@ -1,13 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    buildSrcVersions
-    id("org.danilopianini.git-sensitive-semantic-versioning") version Versions.org_danilopianini_git_sensitive_semantic_versioning_gradle_plugin
+    id("org.danilopianini.git-sensitive-semantic-versioning")
     `java-library`
-    id("org.jlleitschuh.gradle.ktlint") version Versions.org_jlleitschuh_gradle_ktlint_gradle_plugin
+    id("org.jlleitschuh.gradle.ktlint")
     signing
     `maven-publish`
-    id("org.danilopianini.publish-on-central") version Versions.org_danilopianini_publish_on_central_gradle_plugin
+    id("org.danilopianini.publish-on-central")
 }
 
 repositories {
@@ -40,9 +39,9 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 dependencies {
-    api("com.google.code.gson:gson:2.8.6")
-    implementation("javax.annotation:jsr250-api:1.0")
-    testImplementation("junit:junit:[4.12, 5[")
+    api("com.google.code.gson:gson:_")
+    implementation("javax.annotation:jsr250-api:_")
+    testImplementation("junit:junit:_")
 }
 
 tasks.withType<Test> {

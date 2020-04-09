@@ -1,54 +1,54 @@
-reference-jdk: &reference-jdk
+_reference-jdk: &reference-jdk
   'JDK="adopt@1.8"'
-reference-os: &reference-os
+_reference-os: &reference-os
   'linux'
+
 language: bash
+
 git:
   depth: false
-arch:
-  - amd64
+  autocrlf: input
+
 os:
 # OSX dropped due to jabba not installing JDK6 correctly
 #  - osx
   - windows
   - *reference-os
-dist: bionic
+
 stages:
   - check
   - test
-  - deploy
+  - name: deploy
+    if: type != pull_request AND repo = DanySK/gson-extras
+
 env:
   global:
     - TERM=dumb
-    - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
-    - PUBLISH="false"
+    - GRAVIS_REPO="https://github.com/DanySK/Gravis-CI.git"
+    - GRAVIS="$HOME/gravis"
   matrix:
     - *reference-jdk
     - JDK="adopt-openj9@1.8"
-    - JDK="adopt@1.9"
-    - JDK="adopt@1.10"
     - JDK="adopt@1.11"
     - JDK="adopt-openj9@1.11"
-    - JDK="adopt@1.12"
-    - JDK="adopt-openj9@1.12"
-matrix:
+    - JDK="adopt@"
+    - JDK="adopt-openj9@"
+
+jobs:
   exclude:
     - os: *reference-os
       env: *reference-jdk
-jobs:
+      stage: test
   include:
     - stage: check
       name: "Compile, check, test on reference JDK"
       os: *reference-os
       env:
         - *reference-jdk
-      script:
-        - ./gradlew clean check
     - stage: deploy
       name: "Preparation of reports and deployment"
       os: *reference-os
       env:
-        - PUBLISH="true"
         - *reference-jdk
         # Signing
         - secure: "V5I3QgUPGXq7frjzDdMonNkPYyMQvqQQmyKkdxCg3BQ7h3bLeb2+iJmHUMy936fsMxXGtYn4D69tyPLbtGr65QLZ788ptKEHv1YRAv/r32dgnP3slcfDZwpGDoLcvODhccM03tpsl+6fZLb0SLu/WiUIfsGWd39+90podcfGqzPy1K5WU5nmkan4b/oshWqXdeGvlJE7NG9Cfsmu2kOdFKBVkVskboM3icgsX+Au39PoAGXF4NZOJjjR3eMllk1yigayzA9pEOBzJukRKAYTOpYvh77xTnehC4ML3aq2zgAXH9zggeL7Hk6p8rtJNm2T7dt+++BjFe2x2TykSOctBU3jg4il+ryZowXtN46uQecfLtrTSrnNLaX6ST1+FlQc0OxjYVtBue9bVp46Chhy+YKJmXswYPJpllCW4QJ8WBZWzafzz42biEouyc4uWfmyyx1wqRJHU6YWu/VfYtTvZSbdlg+IzsnFPjrWR3y5K4Oa5aVS67OxWCJlsSZgFeSOm3MHgqs85uA5G0ZbiWXij5/ExGgTSoY8ksE8Qx6d4dO9ZFEddmZDmqKkNrFqkPwLl+K3JM8jUbjBC8Ky7YXmmzVl4ZQEAwmm4DgvYuFz8CB4CBfa4RJhkCJf4NM9WBUrkETgDMYazP2xI283li7hNM7xHnZKW+W6Y4Aaif+prkU="
@@ -60,24 +60,26 @@ jobs:
         - export ORG_GRADLE_PROJECT_signingKey=$(cat secrets.asc)
         - rm secrets.asc
       script:
-        - ./gradlew sign
-      after_success:
-        - travis_wait 40 ./gradlew publishAll -x test
+        - travis_retry ./gradlew publishAll -x test
+
 before_install:
-  - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
-  - source .install-jdk-travis.sh
-  - export JAVA6_JDK=$($jabba ls-remote | grep -m1 @1.6)
+  - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
+  - source $GRAVIS/install-jdk
+  - export ACTUAL_JDK=$(jabba current)
+  - export JAVA6_JDK=$(jabba ls-remote | grep -m1 @1.6)
   - 'echo Selected JDK6: $JAVA6_JDK'
-  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && $jabba ls-remote && exit 1)'
-  - $jabba install $JAVA6_JDK
+  - '[ ! -z "$JAVA6_JDK" ] || (echo unable to find a JAVA6 version among: && jabba ls-remote && exit 1)'
+  - jabba install $JAVA6_JDK
   - echo setting ORG_GRADLE_PROJECT_java6Home to $HOME/.jabba/jdk/$JAVA6_JDK
   - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/$JAVA6_JDK
-  - $jabba use $ACTUAL_JDK
+  - jabba use $ACTUAL_JDK
+
 script:
-  - ./gradlew test
+  - travis_retry ./gradlew check
+
 before_cache:
-  - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
-  - bash .clean_gradle_cache.sh
+  - $GRAVIS/clean-gradle-cache
+
 cache:
   directories:
     - $HOME/.gradle/caches/
