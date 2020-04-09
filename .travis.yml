@@ -1,22 +1,24 @@
-reference-jdk: &reference-jdk
+_reference-jdk: &reference-jdk
   'JDK="adopt@1.8"'
-reference-os: &reference-os
+_reference-os: &reference-os
   'linux'
+
 language: bash
+
 git:
   depth: false
-arch:
-  - amd64
+
 os:
 # OSX dropped due to jabba not installing JDK6 correctly
 #  - osx
   - windows
   - *reference-os
-dist: bionic
+
 stages:
   - check
   - test
   - deploy
+
 env:
   global:
     - TERM=dumb
@@ -29,6 +31,7 @@ env:
     - JDK="adopt-openj9@1.11"
     - JDK="adopt@"
     - JDK="adopt-openj9@"
+
 jobs:
   exclude:
     - os: *reference-os
@@ -61,6 +64,7 @@ jobs:
         - ./gradlew sign
       after_success:
         - travis_wait 40 ./gradlew publishAll -x test
+
 before_install:
   - curl "${GRAVIS}.install-jdk-travis.sh" --output .install-jdk-travis.sh
   - source .install-jdk-travis.sh
@@ -71,11 +75,14 @@ before_install:
   - echo setting ORG_GRADLE_PROJECT_java6Home to $HOME/.jabba/jdk/$JAVA6_JDK
   - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/$JAVA6_JDK
   - $jabba use $ACTUAL_JDK
+
 script:
   - ./gradlew test
+
 before_cache:
   - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
   - bash .clean_gradle_cache.sh
+
 cache:
   directories:
     - $HOME/.gradle/caches/
