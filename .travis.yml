@@ -29,11 +29,11 @@ env:
     - JDK="adopt-openj9@1.11"
     - JDK="adopt@"
     - JDK="adopt-openj9@"
-matrix:
+jobs:
   exclude:
     - os: *reference-os
       env: *reference-jdk
-jobs:
+      stage: test
   include:
     - stage: check
       name: "Compile, check, test on reference JDK"
