@@ -24,7 +24,6 @@ env:
   global:
     - TERM=dumb
     - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
-    - PUBLISH="false"
   matrix:
     - *reference-jdk
     - JDK="adopt-openj9@1.8"
@@ -50,7 +49,6 @@ jobs:
       name: "Preparation of reports and deployment"
       os: *reference-os
       env:
-        - PUBLISH="true"
         - *reference-jdk
         # Signing
         - secure: "V5I3QgUPGXq7frjzDdMonNkPYyMQvqQQmyKkdxCg3BQ7h3bLeb2+iJmHUMy936fsMxXGtYn4D69tyPLbtGr65QLZ788ptKEHv1YRAv/r32dgnP3slcfDZwpGDoLcvODhccM03tpsl+6fZLb0SLu/WiUIfsGWd39+90podcfGqzPy1K5WU5nmkan4b/oshWqXdeGvlJE7NG9Cfsmu2kOdFKBVkVskboM3icgsX+Au39PoAGXF4NZOJjjR3eMllk1yigayzA9pEOBzJukRKAYTOpYvh77xTnehC4ML3aq2zgAXH9zggeL7Hk6p8rtJNm2T7dt+++BjFe2x2TykSOctBU3jg4il+ryZowXtN46uQecfLtrTSrnNLaX6ST1+FlQc0OxjYVtBue9bVp46Chhy+YKJmXswYPJpllCW4QJ8WBZWzafzz42biEouyc4uWfmyyx1wqRJHU6YWu/VfYtTvZSbdlg+IzsnFPjrWR3y5K4Oa5aVS67OxWCJlsSZgFeSOm3MHgqs85uA5G0ZbiWXij5/ExGgTSoY8ksE8Qx6d4dO9ZFEddmZDmqKkNrFqkPwLl+K3JM8jUbjBC8Ky7YXmmzVl4ZQEAwmm4DgvYuFz8CB4CBfa4RJhkCJf4NM9WBUrkETgDMYazP2xI283li7hNM7xHnZKW+W6Y4Aaif+prkU="
