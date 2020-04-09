@@ -72,7 +72,7 @@ before_install:
   - jabba install $JAVA6_JDK
   - echo setting ORG_GRADLE_PROJECT_java6Home to $HOME/.jabba/jdk/$JAVA6_JDK
   - export ORG_GRADLE_PROJECT_java6Home=$HOME/.jabba/jdk/$JAVA6_JDK
-  - $jabba use $ACTUAL_JDK
+  - jabba use $ACTUAL_JDK
 
 script:
   - travis_retry ./gradlew check
