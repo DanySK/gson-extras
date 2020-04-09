@@ -7,6 +7,7 @@ language: bash
 
 git:
   depth: false
+  autocrlf: input
 
 os:
 # OSX dropped due to jabba not installing JDK6 correctly
