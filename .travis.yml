@@ -18,7 +18,8 @@ os:
 stages:
   - check
   - test
-  - deploy
+  - name: deploy
+    if: type != pull_request AND repo = DanySK/gson-extras
 
 env:
   global:
