@@ -4,7 +4,6 @@ This repository is a copy of gson-extras with the sole purpose of being shipped 
 
 *Note*: although the build produces Java 6 compatible class files, Java 7 is required in order to build, in order to perform all the tests.
 
-
 ### *License*
 
 Gson is released under the [Apache 2.0 license](LICENSE).
