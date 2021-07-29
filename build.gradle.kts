@@ -33,8 +33,8 @@ tasks.withType<Test> {
 
 group = "org.danilopianini"
 publishOnCentral {
-    projectDescription.set("Extra goodies for Gson, available on Google's Github repository, made available on Central")
-    projectLongName.set("Gson Extras")
+    projectDescription = "Extra goodies for Gson, available on Google's Github repository, made available on Central"
+    projectLongName = "Gson Extras"
 }
 
 publishing {
