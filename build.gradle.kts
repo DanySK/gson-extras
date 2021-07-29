@@ -13,10 +13,6 @@ repositories {
     mavenCentral()
 }
 
-gitSemVer {
-    version = computeGitSemVer()
-}
-
 dependencies {
     api("com.google.code.gson:gson:_")
     implementation("javax.annotation:jsr250-api:_")
