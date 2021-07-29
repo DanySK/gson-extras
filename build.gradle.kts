@@ -27,6 +27,10 @@ tasks.withType<Test> {
     }
 }
 
+tasks.withType<Javadoc> {
+    isFailOnError = false
+}
+
 group = "org.danilopianini"
 publishOnCentral {
     projectDescription = "Extra goodies for Gson, available on Google's Github repository, made available on Central"
