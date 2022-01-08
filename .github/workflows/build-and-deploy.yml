@@ -10,6 +10,7 @@ on:
       - 'CHANGELOG.md'
       - 'renovate.json'
       - '.gitignore'
+      - README.md
   pull_request:
   workflow_dispatch:
 
