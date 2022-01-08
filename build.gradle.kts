@@ -14,6 +14,7 @@ ext {
         "org.gradle.java.installations.paths",
         file("${System.getProperty("user.home")}/.jabba/jdk")
             .listFiles()
+            ?.onEach { println("files in ${it.path}: ${it.listFiles().toList()}") }
             ?.joinToString(separator = ",")
             ?: ""
     )
