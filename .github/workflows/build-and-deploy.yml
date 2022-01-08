@@ -64,16 +64,14 @@ jobs:
         id: jabba
         shell: bash
         run: |
-          ruby -e 'puts "::set-output name=path::#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"'
+          ruby -e 'puts "org.gradle.java.installations.paths=#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"' >> gradle.properties
       - uses: DanySK/build-check-deploy-gradle-action@1.1.2
-        env:
-          ORG_GRADLE_PROJECT_org.gradle.java.installations.paths: ${{ steps.jabba.outputs.path }}
         with:
           build-command: |
             ./gradlew -q javaToolchains
             ./gradlew assemble --parallel
           check-command: |
-            ./gradlew check
+            ./gradlew check --parallel
           deploy-command: |
             ./gradlew signJavaMavenPublication --parallel
             ./gradlew closeJavaMavenOnMavenCentralNexus
