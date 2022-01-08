@@ -1,21 +1,14 @@
-import org.danilopianini.VersionAliases.justAdditionalAliases
+rootProject.name = "gson-extras"
+enableFeaturePreview("VERSION_CATALOGS")
 
 plugins {
-    id("de.fayard.refreshVersions") version "0.10.1"
+    id("com.gradle.enterprise") version "3.8"
 }
 
-refreshVersions {
-    extraArtifactVersionKeyRules = justAdditionalAliases
-}
-
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.danilopianini:refreshversions-aliases:+")
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+        publishOnFailure()
     }
 }
-
-rootProject.name = "gson-extras"
