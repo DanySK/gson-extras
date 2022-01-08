@@ -33,12 +33,6 @@ jobs:
         uses: tj-actions/branch-names@v5
       - uses: DanySK/build-check-deploy-gradle-action@1.1.2
         with:
-          build-command: |
-            ./gradlew assemble shadowJar --parallel
-          check-command: |
-            ./gradlew check --parallel || ./gradlew check --parallel
-          clean-command: |
-            ./gradlew clean --parallel
           deploy-command: |
             ./gradlew signJavaMavenPublication --parallel
             ./gradlew closeJavaMavenOnMavenCentralNexus
