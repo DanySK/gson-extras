@@ -1,3 +1,10 @@
+### [0.2.4](https://github.com/DanySK/gson-extras/compare/0.2.3...0.2.4) (2022-01-08)
+
+
+### Bug Fixes
+
+* build a JDK6 compatible artifact ([#98](https://github.com/DanySK/gson-extras/issues/98)) ([32f8637](https://github.com/DanySK/gson-extras/commit/32f8637f7a26a5bf6fef38c3d6566ed2b78b2992))
+
 ### [0.2.3](https://github.com/DanySK/gson-extras/compare/0.2.2...0.2.3) (2022-01-08)
 
 
