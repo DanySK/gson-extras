@@ -18,7 +18,7 @@ repositories {
 multiJvm {
     fun canProvideJava(javaVersion: Int): Boolean = runCatching {
         javaToolchains {
-            launcherFor { languageVersion.set(JavaLanguageVersion.of(6)) }.get()
+            launcherFor { languageVersion.set(JavaLanguageVersion.of(javaVersion)) }.get()
         }
     }.isSuccess
 
