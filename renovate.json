@@ -1,0 +1,16 @@
+{
+   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+   "extends": [
+      "github>DanySK/renovate-config"
+   ],
+   "includeForks": true,
+   "packageRules": [
+      {
+         "description": "Trigger a minor update on GSON updates",
+         "matchPackageNames": [
+            "com.google.code.gson:gson",
+         ],
+         "semanticCommitScope": "api-deps"
+      }
+   ]
+}

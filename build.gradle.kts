@@ -1,12 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    id("org.danilopianini.git-sensitive-semantic-versioning")
     `java-library`
-    id("org.jlleitschuh.gradle.ktlint")
-    signing
-    `maven-publish`
-    id("org.danilopianini.publish-on-central")
+    alias(libs.plugins.gitSemVer)
+    alias(libs.plugins.kotlin.qa)
+    alias(libs.plugins.multiJvmTesting)
+    alias(libs.plugins.publishOnCentral)
+    alias(libs.plugins.taskTree)
 }
 
 repositories {
@@ -14,9 +14,9 @@ repositories {
 }
 
 dependencies {
-    api("com.google.code.gson:gson:_")
-    implementation("javax.annotation:jsr250-api:_")
-    testImplementation("junit:junit:_")
+    api(libs.gson)
+    implementation(libs.jsr250)
+    testImplementation(libs.junit4)
 }
 
 tasks.withType<Test> {
@@ -33,8 +33,8 @@ tasks.withType<Javadoc> {
 
 group = "org.danilopianini"
 publishOnCentral {
-    projectDescription = "Extra goodies for Gson, available on Google's Github repository, made available on Central"
-    projectLongName = "Gson Extras"
+    projectDescription.set("Extra goodies for Gson, available on Google's Github repository, made available on Central")
+    projectLongName.set("Gson Extras")
 }
 
 publishing {
