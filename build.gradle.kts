@@ -13,6 +13,25 @@ repositories {
     mavenCentral()
 }
 
+multiJvm {
+    jvmVersionForCompilation.set(6)
+    testByDefaultWith(
+        supportedLtsVersionsAndLatest.map { versions ->
+            (versions + 7).filter { it >= 7 }.toSet()
+        }
+    )
+    afterEvaluate {
+        tasks.named("test") {
+            require(this is Test)
+            javaLauncher.set(
+                javaToolchains.launcherFor {
+                    languageVersion.set(JavaLanguageVersion.of(7))
+                }
+            )
+        }
+    }
+}
+
 dependencies {
     api(libs.gson)
     implementation(libs.jsr250)
