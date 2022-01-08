@@ -1,3 +1,12 @@
+## [0.3.0](https://github.com/DanySK/gson-extras/compare/0.2.4...0.3.0) (2022-01-08)
+
+
+### Features
+
+* added UPPER_CASE_WITH_UNDERSCORES in FieldNamingPolicy ([#2024](https://github.com/DanySK/gson-extras/issues/2024)) ([eaf9a03](https://github.com/DanySK/gson-extras/commit/eaf9a0342d69b4cbbfb3644ce42e196453ce164a))
+* merge branch 'master' of https://github.com/google/gson into google-master ([78a4285](https://github.com/DanySK/gson-extras/commit/78a4285b7833d9a115c07adafae79c687292aec9))
+* merge branch master of https://github.com/google/gson [#100](https://github.com/DanySK/gson-extras/issues/100) ([d399bd9](https://github.com/DanySK/gson-extras/commit/d399bd92e16347c546b6c82f8fe12be473706364))
+
 ### [0.2.4](https://github.com/DanySK/gson-extras/compare/0.2.3...0.2.4) (2022-01-08)
 
 
