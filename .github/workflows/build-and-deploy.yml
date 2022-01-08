@@ -65,7 +65,7 @@ jobs:
         uses: tj-actions/branch-names@v5
       - uses: DanySK/build-check-deploy-gradle-action@1.1.2
         env:
-          JABBA_HOME: ${{ env.HOME }}/.jabba
+          JABBA_HOME: ~/.jabba
         with:
           build-command: |
             ./gradlew -q javaToolchains
