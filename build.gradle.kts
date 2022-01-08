@@ -9,6 +9,18 @@ plugins {
     alias(libs.plugins.taskTree)
 }
 
+ext {
+    set(
+        "org.gradle.java.installations.paths",
+        file("${System.getProperty("user.home")}/.jabba/jdk")
+            .listFiles()
+            ?.joinToString(separator = ",")
+            ?: ""
+    )
+}
+
+println(property("org.gradle.java.installations.paths"))
+
 repositories {
     mavenCentral()
 }
