@@ -26,30 +26,46 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     timeout-minutes: 20
     steps:
-      - name: Install Jabba on Linux
-        if: matrix.os == 'ubuntu'
+      - name: Compute JDK6 version
         shell: bash
+        id: jdk6
         run: |
-          curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-          sudo ln -s "$HOME/.jabba/bin/jabba" /usr/bin/jabba
-          jabba ls-remote
-      - name: Install JDK 6 on Linux
-        if: matrix.os == 'ubuntu'
+          ruby -e '
+            jdk6 = {
+              "ubuntu" => "zulu@1.6.119",
+              "macos" => "unavailable",
+              "windows" => "zulu@1.6.119",
+            }["${{ matrix.os }}"]
+            puts "::set-output name=version::#{jdk6}"
+          '
+      - name: Compute JDK7 version
         shell: bash
+        id: jdk7
         run: |
-          ls -ahl "$HOME/.jabba/bin/"
-          ls -ahl /usr/bin/jabba
-          jabba install zulu@1.6.119
-      - name: Install JDK 7 on Linux
-        if: matrix.os == 'ubuntu'
+          ruby -e '
+            jdk7 = {
+              "ubuntu" => "zulu@1.7.292",
+              "macos" => "zulu@1.7.292",
+              "windows" => "zulu@1.7.292",
+            }["${{ matrix.os }}"]
+            puts "::set-output name=version::#{jdk7}"
+          '
+      - name: Install JDK 6
+        if: steps.jdk6.outputs.version != 'unavailable'
         shell: bash
-        run: jabba install zulu@1.7.292
+        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk6.outputs.version }}" bash
+      - name: Install JDK 7
+        if: steps.jdk7.outputs.version != 'unavailable'
+        shell: bash
+        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk7.outputs.version }}" bash
       - name: Checkout
         uses: danysk/action-checkout@0.2.1
       - name: Get branch name
         id: branch
         uses: tj-actions/branch-names@v5
       - uses: DanySK/build-check-deploy-gradle-action@1.1.2
+        env:
+          JABBA_HOME: $HOME/.jabba
         with:
           build-command: |
             ./gradlew -q javaToolchains

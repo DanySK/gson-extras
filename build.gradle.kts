@@ -12,8 +12,9 @@ plugins {
 ext {
     set(
         "org.gradle.java.installations.paths",
-        file("${System.getProperty("user.home")}/.jabba/jdk")
+        file("${System.getProperty("user.home")}/.jab/jdk")
             .listFiles()
+            ?.filter { it.isDirectory }
             ?.onEach { println("files in ${it.path}: ${it.listFiles().toList()}") }
             ?.joinToString(separator = ",")
             ?: ""
