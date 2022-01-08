@@ -58,21 +58,20 @@ jobs:
         if: steps.jdk7.outputs.version != 'unavailable'
         shell: bash
         run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk7.outputs.version }}" bash
-#      - name: Install JDK 17
-#        uses: battila7/jdk-via-jabba@v1.3.0
-#        if: steps.jdk7.outputs.version != 'unavailable'
-#        with:
-#          jdk: openjdk@1.17
       - name: Checkout
         uses: danysk/action-checkout@0.2.1
-      - name: Get branch name
-        id: branch
-        uses: tj-actions/branch-names@v5
+      - name: Compute the Jabba installed path
+        id: jabba
+        shell: bash
+        run: |
+          ruby -e 'puts "org.gradle.java.installations.paths=#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"' >> gradle.properties
       - uses: DanySK/build-check-deploy-gradle-action@1.1.2
         with:
           build-command: |
             ./gradlew -q javaToolchains
             ./gradlew assemble --parallel
+          check-command: |
+            ./gradlew check --parallel
           deploy-command: |
             ./gradlew signJavaMavenPublication --parallel
             ./gradlew closeJavaMavenOnMavenCentralNexus
