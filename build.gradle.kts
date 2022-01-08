@@ -9,18 +9,6 @@ plugins {
     alias(libs.plugins.taskTree)
 }
 
-ext {
-    set(
-        "org.gradle.java.installations.paths",
-        file("${System.getProperty("user.home")}/.jab/jdk")
-            .listFiles()
-            ?.filter { it.isDirectory }
-            ?.onEach { println("files in ${it.path}: ${it.listFiles().toList()}") }
-            ?.joinToString(separator = ",")
-            ?: ""
-    )
-}
-
 println(property("org.gradle.java.installations.paths"))
 
 repositories {
