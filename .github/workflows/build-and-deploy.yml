@@ -26,43 +26,24 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     timeout-minutes: 20
     steps:
-      - name: Compute JDK6 version
+      - name: Install Jabba on Linux
+        if: matrix.os == 'ubuntu'
         shell: bash
-        id: jdk6
         run: |
-          ruby -e '
-            jdk6 = {
-              "ubuntu" => "zulu@1.6.119",
-              "macos" => "unavailable",
-              "windows" => "zulu@1.6.119",
-            }["${{ matrix.os }}"]
-            puts "::set-output name=version::#{jdk6}"
-          '
-      - name: Compute JDK7 version
+          curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
+          sudo ln -s "$HOME/.jabba/bin/jabba" /usr/bin/jabba
+          jabba ls-remote
+      - name: Install JDK 6 on Linux
+        if: matrix.os == 'ubuntu'
         shell: bash
-        id: jdk7
         run: |
-          ruby -e '
-            jdk7 = {
-              "ubuntu" => "zulu@1.7.292",
-              "macos" => "zulu@1.7.292",
-              "windows" => "zulu@1.7.292",
-            }["${{ matrix.os }}"]
-            puts "::set-output name=version::#{jdk7}"
-          '
-      - name: Install JDK 6
-        if: steps.jdk6.outputs.version != 'unavailable'
+          ls -ahl "$HOME/.jabba/bin/"
+          ls -ahl /usr/bin/jabba
+          jabba install zulu@1.6.119
+      - name: Install JDK 7 on Linux
+        if: matrix.os == 'ubuntu'
         shell: bash
-        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk6.outputs.version }}" bash
-      - name: Install JDK 7
-        if: steps.jdk7.outputs.version != 'unavailable'
-        shell: bash
-        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk7.outputs.version }}" bash
-#      - name: Install JDK 17
-#        uses: battila7/jdk-via-jabba@v1.3.0
-#        if: steps.jdk7.outputs.version != 'unavailable'
-#        with:
-#          jdk: openjdk@1.17
+        run: jabba install zulu@1.7.292
       - name: Checkout
         uses: danysk/action-checkout@0.2.1
       - name: Get branch name
