@@ -8,7 +8,7 @@
       {
          "description": "Trigger a minor update on GSON updates",
          "matchPackageNames": [
-            "com.google.code.gson:gson",
+            "com.google.code.gson:gson"
          ],
          "semanticCommitScope": "api-deps"
       }
