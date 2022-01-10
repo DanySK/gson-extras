@@ -1,3 +1,15 @@
+## [0.4.0](https://github.com/DanySK/gson-extras/compare/0.3.0...0.4.0) (2022-01-10)
+
+
+### Build and continuous integration
+
+* **renovate:** fix configuration by removing the trailing comma ([4f2882f](https://github.com/DanySK/gson-extras/commit/4f2882f903bd65cb26edb0c724223a4d509db3d0))
+
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.8.9 ([7af1f0e](https://github.com/DanySK/gson-extras/commit/7af1f0ec0e5b7aec9a14be47b65f30a8566a9365))
+
 ## [0.3.0](https://github.com/DanySK/gson-extras/compare/0.2.4...0.3.0) (2022-01-08)
 
 
