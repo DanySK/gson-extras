@@ -65,7 +65,7 @@ jobs:
         shell: bash
         run: |
           ruby -e 'puts "org.gradle.java.installations.paths=#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"' >> gradle.properties
-      - uses: DanySK/build-check-deploy-gradle-action@1.2.1
+      - uses: DanySK/build-check-deploy-gradle-action@1.2.4
         with:
           build-command: |
             ./gradlew -q javaToolchains
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v2.4.0
         with:
           token: ${{ secrets.DEPLOYMENT_TOKEN }}
-      - uses: DanySK/build-check-deploy-gradle-action@1.2.1
+      - uses: DanySK/build-check-deploy-gradle-action@1.2.4
         with:
           build-command: true
           check-command: true
