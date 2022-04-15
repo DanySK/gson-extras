@@ -47,7 +47,7 @@ public final class GraphAdapterBuilder {
 
   public GraphAdapterBuilder() {
       this.instanceCreators = new HashMap<Type, InstanceCreator<?>>();
-      this.constructorConstructor = new ConstructorConstructor(instanceCreators);
+      this.constructorConstructor = new ConstructorConstructor(instanceCreators, true);
   }
   public GraphAdapterBuilder addType(Type type) {
     final ObjectConstructor<?> objectConstructor = constructorConstructor.get(TypeToken.get(type));
