@@ -1,3 +1,15 @@
+## [0.6.0](https://github.com/DanySK/gson-extras/compare/0.5.0...0.6.0) (2022-04-15)
+
+
+### Bug Fixes
+
+* pass missing default parameter ([ad5bec2](https://github.com/DanySK/gson-extras/commit/ad5bec28834315cacc045ef782f009934c3f630b))
+
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.9.0 ([226a11c](https://github.com/DanySK/gson-extras/commit/226a11c38c872d7e53276a9e382ab89c7e5f6afd))
+
 ## [0.5.0](https://github.com/DanySK/gson-extras/compare/0.4.0...0.5.0) (2022-04-15)
 
 
