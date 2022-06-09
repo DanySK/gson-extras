@@ -14,10 +14,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   build:
     strategy:
@@ -25,6 +21,9 @@ jobs:
         os: [ windows, macos, ubuntu ]
     runs-on: ${{ matrix.os }}-latest
     timeout-minutes: 20
+    concurrency:
+      group: ${{ github.workflow }}-${{ matrix.os }}-${{ github.event.number || github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Compute JDK6 version
         shell: bash
@@ -89,6 +88,7 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
+    concurrency: release
     if: >-
       contains('push workflow_dispatch', github.event_name)
       && contains(github.repository, 'DanySK/gson-extras')
