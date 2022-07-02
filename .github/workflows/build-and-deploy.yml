@@ -1,85 +1,25 @@
-name: CI
+name: CI/CD Process
 on:
-  push:
-    tags: '*'
-    branches-ignore:
-      - 'autodelivery**'
-      - 'bump-**'
-      - 'renovate/**'
-    paths-ignore:
-      - 'CHANGELOG.md'
-      - 'renovate.json'
-      - '.gitignore'
-      - README.md
-  pull_request:
+  workflow_call:
   workflow_dispatch:
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [ windows, macos, ubuntu ]
+        os: [windows, macos, ubuntu]
     runs-on: ${{ matrix.os }}-latest
-    timeout-minutes: 20
-    concurrency:
-      group: ${{ github.workflow }}-${{ matrix.os }}-${{ github.event.number || github.ref }}
-      cancel-in-progress: true
     steps:
-      - name: Compute JDK6 version
-        shell: bash
-        id: jdk6
-        run: |
-          ruby -e '
-            jdk6 = {
-              "ubuntu" => "zulu@1.6.119",
-              "macos" => "unavailable",
-              "windows" => "zulu@1.6.119",
-            }["${{ matrix.os }}"]
-            puts "::set-output name=version::#{jdk6}"
-          '
-      - name: Compute JDK7 version
-        shell: bash
-        id: jdk7
-        run: |
-          ruby -e '
-            jdk7 = {
-              "ubuntu" => "zulu@1.7.292",
-              "macos" => "zulu@1.7.292",
-              "windows" => "zulu@1.7.292",
-            }["${{ matrix.os }}"]
-            puts "::set-output name=version::#{jdk7}"
-          '
-      - name: Install JDK 6
-        if: steps.jdk6.outputs.version != 'unavailable'
-        shell: bash
-        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk6.outputs.version }}" bash
-      - name: Install JDK 7
-        if: steps.jdk7.outputs.version != 'unavailable'
-        shell: bash
-        run: curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="install ${{ steps.jdk7.outputs.version }}" bash
       - name: Checkout
-        uses: danysk/action-checkout@0.2.1
-      - name: Compute the Jabba installed path
-        id: jabba
-        shell: bash
-        run: |
-          ruby -e 'puts "org.gradle.java.installations.paths=#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"' >> gradle.properties
-      - uses: DanySK/build-check-deploy-gradle-action@2.1.0
+        uses: DanySK/action-checkout@0.2.1
+      - uses: DanySK/build-check-deploy-gradle-action@2.0.2
         with:
-          build-command: |
-            ./gradlew -q javaToolchains
-            ./gradlew assemble --parallel
-          check-command: |
-            ./gradlew check --parallel
-          deploy-command: |
-            ./gradlew signJavaMavenPublication --parallel
-            ./gradlew closeJavaMavenOnMavenCentralNexus
-          should-run-codecov: ${{ contains('Linux', runner.os) }}
+          deploy-command: ./gradlew uploadJava close --parallel
+          should-run-codecov: ${{ runner.os == 'Linux' }}
           should-deploy: >-
             ${{
-              contains('Linux', runner.os)
-              && contains(github.repository, 'DanySK/gson-extras')
-              && contains('push workflow_dispatch', github.event_name)
+            runner.os == 'Linux'
+            && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
             }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           signing-key: ${{ secrets.SIGNING_KEY }}
@@ -88,16 +28,15 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    concurrency: release
-    if: >-
-      contains('push workflow_dispatch', github.event_name)
-      && contains(github.repository, 'DanySK/gson-extras')
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    concurrency:
+      group: release
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.2
         with:
           token: ${{ secrets.DEPLOYMENT_TOKEN }}
-      - uses: DanySK/build-check-deploy-gradle-action@2.1.0
+      - uses: DanySK/build-check-deploy-gradle-action@2.0.2
         with:
           build-command: true
           check-command: true
@@ -107,20 +46,22 @@ jobs:
           should-run-codecov: false
           should-deploy: true
           should-validate-wrapper: false
-          github-token: ${{ secrets.DEPLOYMENT_TOKEN }}
+          github-token: ${{ github.token }}
+          gradle-publish-secret: ${{ secrets.GRADLE_PUBLISH_SECRET }}
+          gradle-publish-key: ${{ secrets.GRADLE_PUBLISH_KEY }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           signing-key: ${{ secrets.SIGNING_KEY }}
           signing-password: ${{ secrets.SIGNING_PASSWORD }}
-  ci-success:
+  success:
     runs-on: ubuntu-latest
     needs:
-      - release
       - build
+      - release
     if: >-
       always() && (
         contains(join(needs.*.result, ','), 'failure')
         || !contains(join(needs.*.result, ','), 'cancelled')
       )
     steps:
-      - name: Verify that there were no failures
+      - name: Verify that the workflow executed and there were no failures
         run: ${{ !contains(join(needs.*.result, ','), 'failure') }}
