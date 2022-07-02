@@ -3,7 +3,7 @@ curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | JABBA_COMMAND="
 ruby -e 'puts "org.gradle.java.installations.paths=#{Dir["#{Dir.home}/.jabba/jdk/*"].join(",")}"' >> gradle.properties
 git tag -a -f \${nextRelease.version} \${nextRelease.version} -F CHANGELOG.md
 git push --force origin \${nextRelease.version}
-./gradlew releaseJavaMavenOnMavenCentralNexus || exit 1
+./gradlew uploadJava release --parallel || exit 1
 ./gradlew publishJavaMavenPublicationToGithubRepository || true
 `
 var config = require('semantic-release-preconfigured-conventional-commits');
