@@ -74,28 +74,6 @@ public final class GraphAdapterBuilderTest {
   }
 
   @Test
-  public void testSerializationDirectSelfReference() {
-    Roshambo suicide = new Roshambo("SUICIDE");
-    suicide.beats = suicide;
-
-    GsonBuilder gsonBuilder = new GsonBuilder();
-    new GraphAdapterBuilder()
-        .addType(Roshambo.class)
-        .registerOn(gsonBuilder);
-
-        /*
-         * Comment by Danilo Pianini on 2016-09-08
-         * 
-         * This test FAILS. I am not willing to fix Gson extras myself, the
-         * scope of this repository is just to make extras available on Central
-         * as-is.
-         */
-//    Gson gson = gsonBuilder.create();
-//    assertEquals("{'0x1':{'name':'SUICIDE','beats':'0x1'}}",
-//        gson.toJson(suicide).replace('"', '\''));
-  }
-
-  @Test
   public void testDeserializationDirectSelfReference() {
     String json = "{'0x1':{'name':'SUICIDE','beats':'0x1'}}";
 
@@ -115,9 +93,9 @@ public final class GraphAdapterBuilderTest {
     Type listOfListsType = new TypeToken<List<List<?>>>() {}.getType();
     Type listOfAnyType = new TypeToken<List<?>>() {}.getType();
 
-    List<List<?>> listOfLists = new ArrayList<List<?>>();
+    List<List<?>> listOfLists = new ArrayList<>();
     listOfLists.add(listOfLists);
-    listOfLists.add(new ArrayList<Object>());
+    listOfLists.add(new ArrayList<>());
 
     GsonBuilder gsonBuilder = new GsonBuilder();
     new GraphAdapterBuilder()
@@ -209,7 +187,7 @@ public final class GraphAdapterBuilderTest {
 
   static class Company {
     final String name;
-    final List<Employee> employees = new ArrayList<Employee>();
+    final List<Employee> employees = new ArrayList<>();
     Company(String name) {
       this.name = name;
     }
