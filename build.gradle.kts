@@ -20,7 +20,7 @@ multiJvm {
         }
     }.isSuccess
 
-    val supportedOldJava = (6..8).map { it to canProvideJava(it) }
+    val supportedOldJava = (7..8).map { it to canProvideJava(it) }
     val (supported, unsupported) = supportedOldJava.partition { it.second }.let { (a, b) ->
         a.map { it.first } to b.map { it.first }
     }
@@ -33,22 +33,6 @@ multiJvm {
         logger.warn("The artifact will be compiled with Java $javaCompileVersion and tested on this and newer versions")
     }
     jvmVersionForCompilation.set(javaCompileVersion)
-    val jvmTestVersions = supported.filter { it > 6 }
-    testByDefaultWith(
-        supportedLtsVersionsAndLatest.map { versions ->
-            (versions + jvmTestVersions).toSet()
-        }
-    )
-    afterEvaluate {
-        tasks.named("test") {
-            require(this is Test)
-            javaLauncher.set(
-                javaToolchains.launcherFor {
-                    languageVersion.set(JavaLanguageVersion.of(jvmTestVersions.first()))
-                }
-            )
-        }
-    }
 }
 
 dependencies {
