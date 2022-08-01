@@ -1,8 +1,7 @@
 # gson-extras
 
-This repository is a copy of gson-extras with the sole purpose of being shipped to Maven Central, since many people insist in copying the sources inside their own projects as [James Wald suggests on a forum](https://groups.google.com/forum/#!topic/google-gson/dM9ZmAQr25E).
-
-*Note*: although the build produces Java 6 compatible class files, Java 7 is required in order to build, in order to perform all the tests.
+This repository is a copy of gson-extras with the sole purpose of being shipped to Maven Central,
+since many people insist in copying the sources inside their own projects as [James Wald suggests on a forum](https://groups.google.com/forum/#!topic/google-gson/dM9ZmAQr25E).
 
 ### *License*
 
