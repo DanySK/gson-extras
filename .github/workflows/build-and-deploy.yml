@@ -15,7 +15,7 @@ jobs:
       - uses: DanySK/build-check-deploy-gradle-action@2.1.2
         with:
           deploy-command: ./gradlew uploadJava close --parallel
-          should-run-codecov: ${{ runner.os == 'Linux' }}
+          should-run-codecov: false
           should-deploy: >-
             ${{
             runner.os == 'Linux'
