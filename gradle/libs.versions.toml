@@ -8,6 +8,6 @@ junit4 = "junit:junit:4.13.2"
 [plugins]
 gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "0.3.0" }
 kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.27.1" }
-publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "2.0.8" }
+publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "2.0.9" }
 multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "0.4.13" }
 taskTree = { id = "com.dorongold.task-tree", version = "2.1.0" }
