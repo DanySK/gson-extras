@@ -2,7 +2,7 @@ rootProject.name = "gson-extras"
 enableFeaturePreview("VERSION_CATALOGS")
 
 plugins {
-    id("com.gradle.enterprise") version "3.11.4"
+    id("com.gradle.enterprise") version "3.12.3"
 }
 
 gradleEnterprise {
