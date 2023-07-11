@@ -9,5 +9,5 @@ junit4 = "junit:junit:4.13.2"
 gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "1.1.10" }
 kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.47.1" }
 publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "5.0.9" }
-multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "0.5.3" }
+multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "0.5.4" }
 taskTree = { id = "com.dorongold.task-tree", version = "2.1.1" }
