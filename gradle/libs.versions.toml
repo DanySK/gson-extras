@@ -6,7 +6,7 @@ jsr250 = "javax.annotation:jsr250-api:1.0"
 junit4 = "junit:junit:4.13.2"
 
 [plugins]
-gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "3.0.0" }
+gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "3.1.0" }
 kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.58.0" }
 publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "5.0.22" }
 multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "0.5.7" }
