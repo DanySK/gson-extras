@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: DanySK/action-checkout@0.2.18
-      - uses: DanySK/build-check-deploy-gradle-action@2.4.19
+      - uses: DanySK/build-check-deploy-gradle-action@2.4.20
         with:
           deploy-command: ./gradlew uploadJava close --parallel
           should-run-codecov: false
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
         with:
           token: ${{ secrets.DEPLOYMENT_TOKEN }}
-      - uses: DanySK/build-check-deploy-gradle-action@2.4.19
+      - uses: DanySK/build-check-deploy-gradle-action@2.4.20
         with:
           build-command: true
           check-command: true
