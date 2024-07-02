@@ -1,14 +1,14 @@
 rootProject.name = "gson-extras"
 
 plugins {
-    id("com.gradle.enterprise") version "3.17.5"
+    id("com.gradle.develocity") version "3.17.5"
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-gradleEnterprise {
+develocity {
     buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-        publishOnFailure()
+        termsOfUseUrl = "https://gradle.com/terms-of-service"
+        termsOfUseAgree = "yes"
+        uploadInBackground = !System.getenv("CI").toBoolean()
     }
 }
