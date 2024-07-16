@@ -16,6 +16,7 @@ jobs:
         with:
           deploy-command: ./gradlew uploadJava close --parallel
           should-run-codecov: false
+          codecov-token: ${{ secrets.CODECOV_TOKEN }}
           should-deploy: >-
             ${{
             runner.os == 'Linux'
