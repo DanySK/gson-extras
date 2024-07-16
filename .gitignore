@@ -1,5 +1,6 @@
 bin/
 build/
+node_modules/
 .settings/
 .project
 .directory
