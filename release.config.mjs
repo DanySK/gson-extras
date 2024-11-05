@@ -6,7 +6,7 @@ git push --force origin \${nextRelease.version}
 ./gradlew uploadJava release --parallel || exit 1
 ./gradlew publishJavaMavenPublicationToGithubRepository || true
 `
-import config from 'semantic-release-preconfigured-conventional-commits' assert { type: "json" };
+import config from 'semantic-release-preconfigured-conventional-commits' with { type: "json" };
 config.plugins.push(
     [
         "@semantic-release/exec",
