@@ -55,6 +55,7 @@ tasks.withType<Javadoc> {
 
 group = "org.danilopianini"
 publishOnCentral {
+    repoOwner = "DanySK"
     projectDescription.set("Extra goodies for Gson, available on Google's Github repository, made available on Central")
     projectLongName.set("Gson Extras")
 }
