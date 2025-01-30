@@ -14,25 +14,7 @@ repositories {
 }
 
 multiJvm {
-    fun canProvideJava(javaVersion: Int): Boolean = runCatching {
-        javaToolchains {
-            launcherFor { languageVersion.set(JavaLanguageVersion.of(javaVersion)) }.get()
-        }
-    }.isSuccess
-
-    val supportedOldJava = (7..8).map { it to canProvideJava(it) }
-    val (supported, unsupported) = supportedOldJava.partition { it.second }.let { (a, b) ->
-        a.map { it.first } to b.map { it.first }
-    }
-    require(supported.isNotEmpty()) {
-        "No supported Java Version including Java 8? :/"
-    }
-    val javaCompileVersion: Int = supported.first()
-    unsupported.forEach {
-        logger.warn("Java $it is not available on this system and cannot be automatically provided")
-        logger.warn("The artifact will be compiled with Java $javaCompileVersion and tested on this and newer versions")
-    }
-    jvmVersionForCompilation.set(javaCompileVersion)
+    jvmVersionForCompilation.set(8)
 }
 
 dependencies {
