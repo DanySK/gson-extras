@@ -68,12 +68,11 @@ publishing {
                     developer {
                         name.set("Danilo Pianini")
                         email.set("danilo.pianini@unibo.it")
-                        url.set("http://www.danilopianini.org/")
+                        url.set("https://danysk.github.io/")
                     }
                     developer {
                         name.set("Matteo Francia")
                         email.set("matteo.francia2@studio.unibo.it")
-                        url.set("http://www.danilopianini.org/")
                     }
                 }
             }
