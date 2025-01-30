@@ -1,3 +1,30 @@
+## [3.0.0](https://github.com/DanySK/gson-extras/compare/2.0.0...3.0.0) (2025-01-30)
+
+### ⚠ BREAKING CHANGES
+
+* Merge remote-tracking branch 'google/main'
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.12.0 ([#802](https://github.com/DanySK/gson-extras/issues/802)) ([e85a651](https://github.com/DanySK/gson-extras/commit/e85a65151a43c62f9c2a40e495d8827c27ed82ee))
+
+### Bug Fixes
+
+* ParseBenchmark json property typo ([#2473](https://github.com/DanySK/gson-extras/issues/2473)) ([1e7625b](https://github.com/DanySK/gson-extras/commit/1e7625b963d2e4447a4aa46a2fadc6d0e3a3aba7))
+
+### Revert previous changes
+
+* Revert "Bump org.codehaus.plexus:plexus-utils from 3.5.1 to 4.0.0 ([#2468](https://github.com/DanySK/gson-extras/issues/2468))" ([#2469](https://github.com/DanySK/gson-extras/issues/2469)) ([db4a58a](https://github.com/DanySK/gson-extras/commit/db4a58a417976419de9ebe0cb2bb44ce528f9860))
+
+### Build and continuous integration
+
+* harden build.yml permissions ([#2274](https://github.com/DanySK/gson-extras/issues/2274)) ([c33e03b](https://github.com/DanySK/gson-extras/commit/c33e03b133722e84d25c4f80244d74f7fe3f66cb))
+* track the Gradle wrapper `distributionSha256Sum` ([c3b208d](https://github.com/DanySK/gson-extras/commit/c3b208d8dfc109faaa675f2c2035321296c12d4d))
+
+### General maintenance
+
+* Merge remote-tracking branch 'google/main' ([8abc8fa](https://github.com/DanySK/gson-extras/commit/8abc8fa8b59ae7d25fa027b25134f8056bd3c252))
+
 ## [2.0.0](https://github.com/DanySK/gson-extras/compare/1.3.0...2.0.0) (2025-01-30)
 
 ### ⚠ BREAKING CHANGES
