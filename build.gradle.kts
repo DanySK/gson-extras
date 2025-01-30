@@ -21,6 +21,7 @@ dependencies {
     api(libs.gson)
     implementation(libs.jsr250)
     testImplementation(libs.junit4)
+    testImplementation(libs.truth)
 }
 
 tasks.withType<Test> {
