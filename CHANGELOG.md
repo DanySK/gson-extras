@@ -1,3 +1,13 @@
+## [3.1.0](https://github.com/DanySK/gson-extras/compare/3.0.0...3.1.0) (2025-01-31)
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.12.1 ([#803](https://github.com/DanySK/gson-extras/issues/803)) ([ca82e4a](https://github.com/DanySK/gson-extras/commit/ca82e4a353bc7c3c30669cfe83f9f630b5f23b92))
+
+### Build and continuous integration
+
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.8 ([#804](https://github.com/DanySK/gson-extras/issues/804)) ([12fd804](https://github.com/DanySK/gson-extras/commit/12fd804c187133db58317d58724c4750569cbd93))
+
 ## [3.0.0](https://github.com/DanySK/gson-extras/compare/2.0.0...3.0.0) (2025-01-30)
 
 ### ⚠ BREAKING CHANGES
