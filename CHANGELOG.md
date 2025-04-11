@@ -1,3 +1,46 @@
+## [3.2.0](https://github.com/DanySK/gson-extras/compare/3.1.0...3.2.0) (2025-04-11)
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.13.0 ([#841](https://github.com/DanySK/gson-extras/issues/841)) ([7184d1c](https://github.com/DanySK/gson-extras/commit/7184d1c21e3d4557212373c97620dbd80e60175d))
+* **deps:** update dependency gradle to v8.13 ([#817](https://github.com/DanySK/gson-extras/issues/817)) ([feb4368](https://github.com/DanySK/gson-extras/commit/feb4368f588a1ae7885791a978478ed1d1c606c9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.120 ([#806](https://github.com/DanySK/gson-extras/issues/806)) ([7d92e09](https://github.com/DanySK/gson-extras/commit/7d92e09b58f770b0feb0ae4d0e9c50ed49959a68))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.121 ([#807](https://github.com/DanySK/gson-extras/issues/807)) ([77ebf69](https://github.com/DanySK/gson-extras/commit/77ebf699bf427d2c88d7b40883901ed5aa4fb6b2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.122 ([#808](https://github.com/DanySK/gson-extras/issues/808)) ([e8b91d2](https://github.com/DanySK/gson-extras/commit/e8b91d2fc4d1f4d485718b45de70e66ac0f19f95))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.123 ([#810](https://github.com/DanySK/gson-extras/issues/810)) ([cc98401](https://github.com/DanySK/gson-extras/commit/cc984013ea492e6991b8f6dbee3efe0bc615d6fb))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.124 ([#811](https://github.com/DanySK/gson-extras/issues/811)) ([bfba461](https://github.com/DanySK/gson-extras/commit/bfba461f139019399fc710dfc17616d4da540725))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.125 ([#815](https://github.com/DanySK/gson-extras/issues/815)) ([9c555d0](https://github.com/DanySK/gson-extras/commit/9c555d0927ebf0f63544ad8c394bca8784aa4b3d))
+* **deps:** update node.js to 22.14 ([#809](https://github.com/DanySK/gson-extras/issues/809)) ([40f976d](https://github.com/DanySK/gson-extras/commit/40f976dab5f2cf863ec5abd012b6abaf9652edc4))
+* **deps:** update plugin com.gradle.develocity to v3.19.2 ([#813](https://github.com/DanySK/gson-extras/issues/813)) ([4745a3d](https://github.com/DanySK/gson-extras/commit/4745a3d4b761c9129a071c38a931a747e3ac790e))
+* **deps:** update plugin com.gradle.develocity to v4 ([#836](https://github.com/DanySK/gson-extras/issues/836)) ([ab24cf9](https://github.com/DanySK/gson-extras/commit/ab24cf96eae1a1df073f534a9febbb14afaa806d))
+* **deps:** update plugin kotlin-qa to v0.79.0 ([#828](https://github.com/DanySK/gson-extras/issues/828)) ([36c8575](https://github.com/DanySK/gson-extras/commit/36c8575b54fc42a9f4302c73c8d449a345bf8420))
+* **deps:** update plugin kotlin-qa to v0.81.1 ([#829](https://github.com/DanySK/gson-extras/issues/829)) ([cee3979](https://github.com/DanySK/gson-extras/commit/cee3979655e09233e3b6033fa6c306f0f6ce0ab4))
+* **deps:** update plugin kotlin-qa to v0.82.0 ([#830](https://github.com/DanySK/gson-extras/issues/830)) ([7002d3f](https://github.com/DanySK/gson-extras/commit/7002d3f9dc51b6d0112494444b31700ef448dcd7))
+* **deps:** update plugin kotlin-qa to v0.84.1 ([#832](https://github.com/DanySK/gson-extras/issues/832)) ([be61bfa](https://github.com/DanySK/gson-extras/commit/be61bfa3379025101b954e17ffa2e3b1e828a0f8))
+* **deps:** update plugin kotlin-qa to v0.85.0 ([#834](https://github.com/DanySK/gson-extras/issues/834)) ([4d230da](https://github.com/DanySK/gson-extras/commit/4d230da7f09407cd11a319139a75345cb45bca72))
+* **deps:** update plugin multijvmtesting to v3.2.3 ([#816](https://github.com/DanySK/gson-extras/issues/816)) ([19614f2](https://github.com/DanySK/gson-extras/commit/19614f25f4d8fd74616279cd54fef62b412b8a48))
+* **deps:** update plugin multijvmtesting to v3.2.4 ([#824](https://github.com/DanySK/gson-extras/issues/824)) ([cd8aa46](https://github.com/DanySK/gson-extras/commit/cd8aa46bb88483a8b2a4912e629ddfdd6077a87c))
+* **deps:** update plugin multijvmtesting to v3.3.0 ([#826](https://github.com/DanySK/gson-extras/issues/826)) ([f4bae86](https://github.com/DanySK/gson-extras/commit/f4bae86e5b88d17379c9e4df212121c0f464ddf0))
+* **deps:** update plugin org.gradle.toolchains.foojay-resolver-convention to v0.10.0 ([#840](https://github.com/DanySK/gson-extras/issues/840)) ([06c5aae](https://github.com/DanySK/gson-extras/commit/06c5aaee21594b4bd56d7e44a9d94ea9bb3bdffe))
+* **deps:** update plugin publishoncentral to v8.0.3 ([#805](https://github.com/DanySK/gson-extras/issues/805)) ([0112da9](https://github.com/DanySK/gson-extras/commit/0112da9ccd6148e06b84935db573648f3461ee48))
+* **deps:** update plugin publishoncentral to v8.0.4 ([#820](https://github.com/DanySK/gson-extras/issues/820)) ([a38b7f7](https://github.com/DanySK/gson-extras/commit/a38b7f72ab3f2f7f84bb42a11503f416c064df2a))
+* **deps:** update plugin publishoncentral to v8.0.5 ([#825](https://github.com/DanySK/gson-extras/issues/825)) ([0c99c55](https://github.com/DanySK/gson-extras/commit/0c99c554e5e89d481cf7254f035722be16ffb590))
+* **deps:** update plugin publishoncentral to v8.0.6 ([#835](https://github.com/DanySK/gson-extras/issues/835)) ([3ebb4f3](https://github.com/DanySK/gson-extras/commit/3ebb4f31f2a054795f514769cbeea865a2d1ac21))
+* **deps:** update plugin tasktree to v4.0.1 ([#821](https://github.com/DanySK/gson-extras/issues/821)) ([6bd5850](https://github.com/DanySK/gson-extras/commit/6bd5850c79111b5d3b0fcc3ccf88c6bc8a5b709c))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4.3.0 ([#822](https://github.com/DanySK/gson-extras/issues/822)) ([13fbf24](https://github.com/DanySK/gson-extras/commit/13fbf240eb94eeeb70dbc941d42e3e4344aa8f80))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.10 ([#814](https://github.com/DanySK/gson-extras/issues/814)) ([f449ce9](https://github.com/DanySK/gson-extras/commit/f449ce92adb21589f33716dd4adcfac35bc4f7c8))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.11 ([#818](https://github.com/DanySK/gson-extras/issues/818)) ([0346f2a](https://github.com/DanySK/gson-extras/commit/0346f2a5fc90391383348b746de8546b3554c2ca))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.12 ([#819](https://github.com/DanySK/gson-extras/issues/819)) ([a29889f](https://github.com/DanySK/gson-extras/commit/a29889f1286c9e9b70276b53cdf39aebd7181e01))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.13 ([#823](https://github.com/DanySK/gson-extras/issues/823)) ([226970e](https://github.com/DanySK/gson-extras/commit/226970e376c85af72042fd384b75ab25dc35f203))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.14 ([#833](https://github.com/DanySK/gson-extras/issues/833)) ([3bf99be](https://github.com/DanySK/gson-extras/commit/3bf99bec6664518169c98cb430de9eff32cba352))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.15 ([#837](https://github.com/DanySK/gson-extras/issues/837)) ([55acaf0](https://github.com/DanySK/gson-extras/commit/55acaf033d704397f6e5c2851e8a22de782ce821))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.16 ([#839](https://github.com/DanySK/gson-extras/issues/839)) ([013cf9a](https://github.com/DanySK/gson-extras/commit/013cf9a5603ee457befb547e6c3ecb877a1c9a26))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.9 ([#812](https://github.com/DanySK/gson-extras/issues/812)) ([223e22e](https://github.com/DanySK/gson-extras/commit/223e22ea4a0661c952bc5a5bccf65a800b558821))
+* **deps:** update dependency windows github actions runner to v2025 ([#838](https://github.com/DanySK/gson-extras/issues/838)) ([fcbdaa1](https://github.com/DanySK/gson-extras/commit/fcbdaa1602d8f4b2a74e26ffeb62762a05197ff0))
+
 ## [3.1.0](https://github.com/DanySK/gson-extras/compare/3.0.0...3.1.0) (2025-01-31)
 
 ### Dependency updates
