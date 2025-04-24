@@ -1,3 +1,16 @@
+## [3.3.0](https://github.com/DanySK/gson-extras/compare/3.2.0...3.3.0) (2025-04-24)
+
+### Dependency updates
+
+* **api-deps:** update dependency com.google.code.gson:gson to v2.13.1 ([#846](https://github.com/DanySK/gson-extras/issues/846)) ([b997ebc](https://github.com/DanySK/gson-extras/commit/b997ebcf8ee357f497327b6636d6a9895a3968fc))
+* **deps:** update plugin gitsemver to v5 ([#843](https://github.com/DanySK/gson-extras/issues/843)) ([af1ce40](https://github.com/DanySK/gson-extras/commit/af1ce4081dc078f1666f1822b30e35e5648df742))
+* **deps:** update plugin multijvmtesting to v3.4.0 ([#845](https://github.com/DanySK/gson-extras/issues/845)) ([fa84c9b](https://github.com/DanySK/gson-extras/commit/fa84c9b6a0acf9cb0c2b179868f6e090b7035696))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4.4.0 ([#842](https://github.com/DanySK/gson-extras/issues/842)) ([09918a9](https://github.com/DanySK/gson-extras/commit/09918a9f4b88981fcbe95eebc941b447fb6fcd60))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.7.17 ([#844](https://github.com/DanySK/gson-extras/issues/844)) ([b99a5e7](https://github.com/DanySK/gson-extras/commit/b99a5e73a624e092132b543a48e52ffd89abc6b1))
+
 ## [3.2.0](https://github.com/DanySK/gson-extras/compare/3.1.0...3.2.0) (2025-04-11)
 
 ### Dependency updates
