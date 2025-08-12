@@ -24,7 +24,7 @@ dependencies {
     testImplementation(libs.truth)
 }
 
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
     failFast = true
     exclude("**/*$*.class")
     testLogging {
@@ -33,7 +33,7 @@ tasks.withType<Test> {
     }
 }
 
-tasks.withType<Javadoc> {
+tasks.withType<Javadoc>().configureEach {
     isFailOnError = false
 }
 
