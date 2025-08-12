@@ -26,6 +26,7 @@ dependencies {
 
 tasks.withType<Test> {
     failFast = true
+    exclude("**/*$*.class")
     testLogging {
         events("passed", "skipped", "failed", "standardError")
         exceptionFormat = TestExceptionFormat.FULL
