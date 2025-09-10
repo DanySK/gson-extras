@@ -4,7 +4,7 @@
 gson = "com.google.code.gson:gson:2.13.1"
 jsr250 = "javax.annotation:jsr250-api:1.0"
 junit4 = "junit:junit:4.13.2"
-truth = "com.google.truth:truth:1.4.4"
+truth = "com.google.truth:truth:1.4.5"
 
 [plugins]
 gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "7.0.3" }
