@@ -8,7 +8,7 @@ truth = "com.google.truth:truth:1.4.5"
 
 [plugins]
 gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "7.0.6" }
-kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.95.2" }
+kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.95.3" }
 publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "9.1.7" }
 multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "4.3.2" }
 taskTree = { id = "com.dorongold.task-tree", version = "4.0.1" }
