@@ -7,7 +7,7 @@ junit4 = "junit:junit:4.13.2"
 truth = "com.google.truth:truth:1.4.5"
 
 [plugins]
-gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "7.0.6" }
+gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version = "7.0.7" }
 kotlin-qa = { id = "org.danilopianini.gradle-kotlin-qa", version = "0.98.2" }
 publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "9.1.8" }
 multiJvmTesting = { id = "org.danilopianini.multi-jvm-test-plugin", version = "4.3.2" }
